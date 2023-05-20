@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="atm1.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var balance=5000;
+        var option="";
+        function fun(){
+            document.getElementById('transaction').style.visibility='hidden';
+            var pass='1234';
+            var flag=false;
+            for(var i=1;i<=3;i++)
+            {
+                var p=prompt("enter password");
+                if(p==pass)
+                {
+                    flag=true;
+                    break;
+                }
+            }
+                if(flag)
+                {
+                    document.getElementById("transaction").style.visibility='visible';
+                }
+                else
+                {
+                    alert("all attempts are over");
+                }
+            }
+            function managebalance(){
+               
+                alert("check"+option);
+                var amt=document.getElementById("txtamount").value;
+                if(option=='C')
+                {
+                    balance=balance+parseInt(amt);
+                    document.getElementById("res").innerHTML="Balance is"+balance;
+                }
+                else if(option=='D')
+                {
+                    balance=balance-parseInt(amt);
+                    document.getElementById('res').innerHTML="Balance is"+balance
+                }
+               else if(option=='E')
+                {
+                    document.getElementById('transaction').style.visibility='hidden';
+                    alert("Transaction window closed.");
+                    return;
+                }
+                else if(option=='R')
+                {
+                    document.getElementById('txtamount').value="";
+                    document.getElementById('res').innerHTML="";
+                }
+                else
+                {
+                    document.getElementById('res').innerHTML="Balance is"+balance;
+                }
+            }
+            function setoption(a)
+            {
+                option=a;
+            }
+        
+    </script>
+</head>
+<body onload="fun()">
+    <div id="transaction">
+        <div id="item">
+            <h2>ATM-PROGRAM</h2>
+        </div>
+    <input type="text"placeholder="Enter amount"id="txtamount"/><br><br>
+    <input type="radio"name="r1"id="r1"value="C"onchange="setoption(this.value)">Credit<br><br>
+    <input type="radio"name="r1"id="r1"value="D"onchange="setoption(this.value)">Debit<br><br>
+    <input type="radio"name="r1"id="r1"value="B"onchange="setoption(this.value)">Balance<br><br>
+    <input type="radio"name="r1"id="r1"value="R"onchange="setoption(this.value)">Repeat<br><br>
+    <input type="radio"name="r1"id="r1"value="E"onchange="setoption(this.value)">Exit<br><br>
+    <input type="button"value="CLICK"id="btn"onclick="managebalance()">
+    <div id="res"></div>
+
+</div>
+</body>
+</html>
